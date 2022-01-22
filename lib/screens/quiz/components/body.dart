@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/controllers/question_controllers.dart';
+import 'package:quiz_app/screens/quiz/components/question_card.dart';
 
 import 'progress_bar.dart';
 
@@ -11,6 +13,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    QuestionController _questionController = Get.put(QuestionController());
     return Stack(children: [
       Positioned(
         bottom: 0,
@@ -23,7 +26,43 @@ class Body extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: KDefaultPadding),
         child: Column(
-          children: const [ProgressBar()],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ProgressBar(),
+            const SizedBox(height: KDefaultPadding),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: KDefaultPadding),
+              child: Text.rich(
+                TextSpan(
+                    text: "Question 1",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline4!
+                        .copyWith(color: KSecondaryColor),
+                    children: [
+                      TextSpan(
+                        text: "/10",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5!
+                            .copyWith(color: KSecondaryColor),
+                      )
+                    ]),
+              ),
+            ),
+            const Divider(
+              thickness: 1.5,
+            ),
+            const SizedBox(height: KDefaultPadding),
+            Expanded(
+              child: PageView.builder(
+                itemCount: _questionController.questions.length,
+                itemBuilder: (context, index) => QuestionCard(
+                  question: _questionController.questions[index],
+                ),
+              ),
+            ),
+          ],
         ),
       ))
     ]);

@@ -38,9 +38,10 @@ class ProgressBar extends StatelessWidget {
                         horizontal: KDefaultPadding / 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text('18 sec'),
-                        Icon(Icons.access_alarm)
+                      children: [
+                        Text(
+                            '${(controller.animation.value * 60).round()} sec'),
+                        const Icon(Icons.access_alarm)
                       ],
                     ),
                   ),
