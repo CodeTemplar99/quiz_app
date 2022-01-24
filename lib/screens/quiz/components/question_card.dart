@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/controllers/question_controllers.dart';
 import 'package:quiz_app/models/questions.dart';
 import 'package:quiz_app/screens/quiz/components/option.dart';
 
@@ -13,8 +15,9 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    QuestionController _controller = Get.put(QuestionController());
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: KDefaultPadding),
+      margin: const EdgeInsets.symmetric(horizontal: KDefaultPadding / 5),
       width: double.infinity,
       padding: const EdgeInsets.all(KDefaultPadding),
       decoration: BoxDecoration(
@@ -31,13 +34,15 @@ class QuestionCard extends StatelessWidget {
                 .headline6!
                 .copyWith(color: KBlackColor),
           ),
-          const SizedBox(
-            height: KDefaultPadding / 2,
-          ),
-          const Option(),
-          const Option(),
-          const Option(),
-          const Option(),
+          const SizedBox(height: KDefaultPadding / 2),
+          ...List.generate(
+            question.options.length,
+            (index) => Option(
+              index: index,
+              text: question.options[index],
+              press: () => _controller.checkAns(question, index),
+            ),
+          )
         ],
       ),
     );

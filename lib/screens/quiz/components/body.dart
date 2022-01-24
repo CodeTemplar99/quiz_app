@@ -31,24 +31,26 @@ class Body extends StatelessWidget {
             const ProgressBar(),
             const SizedBox(height: KDefaultPadding),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: KDefaultPadding),
-              child: Text.rich(
-                TextSpan(
-                    text: "Question 1",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4!
-                        .copyWith(color: KSecondaryColor),
-                    children: [
-                      TextSpan(
-                        text: "/10",
+              padding:
+                  const EdgeInsets.symmetric(horizontal: KDefaultPadding / 4),
+              child: Obx(() => Text.rich(
+                    TextSpan(
+                        text:
+                            "Question ${_questionController.questionNumber.value}",
                         style: Theme.of(context)
                             .textTheme
-                            .headline5!
+                            .headline4!
                             .copyWith(color: KSecondaryColor),
-                      )
-                    ]),
-              ),
+                        children: [
+                          TextSpan(
+                            text: "/${_questionController.questions.length}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5!
+                                .copyWith(color: KSecondaryColor),
+                          )
+                        ]),
+                  )),
             ),
             const Divider(
               thickness: 1.5,
@@ -56,6 +58,9 @@ class Body extends StatelessWidget {
             const SizedBox(height: KDefaultPadding),
             Expanded(
               child: PageView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: _questionController.updateQnNum,
+                controller: _questionController.pageController,
                 itemCount: _questionController.questions.length,
                 itemBuilder: (context, index) => QuestionCard(
                   question: _questionController.questions[index],
