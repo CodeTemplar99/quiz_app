@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/models/questions.dart';
 import 'package:quiz_app/screens/score/score_screen.dart';
+import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
 class QuestionController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -89,10 +92,17 @@ class QuestionController extends GetxController
     } else {
       // ignore: prefer_const_constructors
       Get.to(ScoreScreen());
+      // Future.delayed(const Duration(seconds: 5), () => restart());
     }
   }
 
   void updateQnNum(int index) {
     _questionNumber.value = index + 1;
   }
+
+  // void restart() {
+  //   if (_questionNumber.value == _questions.length) {
+  //     // Get.to(const WelcomeScreen());
+  //   }
+  // }
 }
