@@ -1,6 +1,10 @@
 # quiz_app
+<img width="404" alt="Screenshot 2022-01-27 at 14 06 34" src="https://user-images.githubusercontent.com/36797498/151366484-8f5712da-d52c-42f6-bdd3-5b8b979a45fc.png">
 
-A new Flutter project.
+<img width="404" alt="Screenshot 2022-01-27 at 14 06 45" src="https://user-images.githubusercontent.com/36797498/151366522-c22dc752-fb94-498e-adf7-96b0d800543d.png">
+
+<img width="404" alt="Screenshot 2022-01-27 at 14 07 03" src="https://user-images.githubusercontent.com/36797498/151366571-a019555e-d2ee-4356-a097-198277def679.png">
+
 
 ## Getting Started
 
